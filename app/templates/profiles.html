@@ -1,0 +1,18 @@
+
+{% extends "base.html" %}
+
+{% block main %}
+  <div class="login-form center-block">
+    <h2>Profiles</h2>
+    {% include 'flash_messages.html' %}
+    {% for user in userprofiles %}
+    <form action="{{ url_for('loaduserprofile', userid=user.id) }}" method="GET" >
+    <img src="{{ url_for('static',filename=user.profilepic) }}" alt="Profile Photo for {{ user.first_name }} {{ user.last_name }}" />
+     <p> {{ user.first_name }} {{ user.last_name }}</p>
+     <p> {{ user.gender }}</p>
+     <p> {{ user.location}}</p>
+    <button type="submit" class="btn btn-primary">View Profile</button>
+    </form>
+{% endfor %}
+  </div> 
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block main %}
+    {% include 'flash_messages.html' %}
+    <div>
+        <img src="{{ url_for('static',filename=userprofile.profilepic) }}" alt="Profile Photo for {{ userprofile.first_name }} {{ userprofile.last_name }}" />
+        <h3> {{ userprofile.first_name }} {{ userprofile.last_name }}</h3>
+        <p> {{ userprofile.email }}</p>
+        <p> {{ userprofile.location}}</p>
+        <p> Joined on {{ userprofile.created_on}}</p>
+        <h4> About Me</h4>
+        <p>{{ userprofile.biography}}</p>
+        <button class="btn btn-primary">Send Message</button> <button class="btn btn-primary">Follow</button>
+    </div>
+{% endblock %}

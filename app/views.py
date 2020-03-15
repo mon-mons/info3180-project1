@@ -51,7 +51,7 @@ def profile():
             app.config['UPLOAD_FOLDER'], filename
         ))
 
-        userprofile=UserProfile(first_name=firstname,last_name=lastname, gender=gender, email=email,location=location, biography=biography, profilepic=filename)
+        userprofile=UserProfile(first_name=firstname,last_name=lastname, gender=gender, email=email,location=location, biography=biography, profilepic="uploads/"+ filename)
         db.session.add(userprofile)
         db.session.commit()
         return redirect(url_for('profiles'))
@@ -66,7 +66,8 @@ def profiles():
 @app.route('/profile/<userid>')
 def loaduserprofile(userid):
     """Render an individual user profile by the specific user's id."""
-    return render_template('loaduserprofile.html')
+    userprofile =UserProfile.query.filter_by(id=int(userid)).first()
+    return render_template('loaduserprofile.html', userprofile=userprofile)
 
 
 @app.after_request
